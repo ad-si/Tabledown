@@ -26,14 +26,6 @@
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "typecheck": "tsc --noEmit",
-    "build": "tsc",
-    "testCore": "tsx tests/core.ts",
-    "testCli": "npm run build && tsx tests/cli.ts",
-    "test": "npm run typecheck && npm run testCore && npm run testCli",
-    "prepublishOnly": "npm test && npm run build"
-  },
   "keywords": [
     "table",
     "markdown"
