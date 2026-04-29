@@ -1,5 +1,4 @@
-#! /usr/bin/env node
-
-const transformStream = require('../build/transformStream').default
+#!/usr/bin/env node
+import transformStream from "../build/transformStream.js"
 
 transformStream(process.stdin, process.stdout)

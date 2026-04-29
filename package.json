@@ -1,18 +1,38 @@
 {
   "name": "tabledown",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Easily create markdown tables in your Javascript applications",
+  "type": "module",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.js"
+    },
+    "./transform-stream": {
+      "types": "./build/transformStream.d.ts",
+      "import": "./build/transformStream.js"
+    }
+  },
+  "files": [
+    "build",
+    "cli",
+    "readme.md"
+  ],
   "bin": {
     "tabledown": "cli/cli.js"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --max-warnings 0 .",
-    "testCore": "babel-node --presets es2015 tests/core.js",
-    "testCli": "npm run build && babel-node --presets es2015 tests/cli.js",
-    "test": "npm run lint && npm run testCore && npm run testCli",
-    "build": "babel --presets es2015 --out-dir build source",
-    "prepublish": "npm test && npm run build"
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "testCore": "tsx tests/core.ts",
+    "testCli": "npm run build && tsx tests/cli.ts",
+    "test": "npm run typecheck && npm run testCore && npm run testCli",
+    "prepublishOnly": "npm test && npm run build"
   },
   "keywords": [
     "table",
@@ -21,10 +41,9 @@
   "author": "Adrian Sieber",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-preset-es2015": "^6.6.0",
-    "eslint": "^4.1.1",
-    "eslint-config-javascript": "^1.3.0"
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
   },
   "repository": {
     "type": "git",
@@ -33,11 +52,5 @@
   "bugs": {
     "url": "https://github.com/adius/tabledown/issues"
   },
-  "homepage": "https://github.com/adius/tabledown#readme",
-  "eslintConfig": {
-    "extends": "eslint-config-javascript"
-  },
-  "directories": {
-    "test": "tests"
-  }
+  "homepage": "https://github.com/adius/tabledown#readme"
 }
